@@ -76,7 +76,7 @@ resource "google_compute_route" "private-instances-to-nat" {
   tags = ["nat-guest"]
   network = "${google_compute_network.wordpress-network.self_link}"
   next_hop_instance = "${google_compute_instance.nat-instance.self_link}"
-  next_hop_instance_zone = "us-central1-a"
+  next_hop_instance_zone = "${var.gcp_region}"
 }
 
 // Private Instance
@@ -93,4 +93,9 @@ resource "google_compute_instance" "private-instance" {
   network_interface {
     subnetwork = "${google_compute_subnetwork.us-central1.self_link}"
   }
+}
+
+// OUTPUTS
+output "nat_ip" {
+  value = "${google_compute_instance.nat-instance.network_interface.0.access_config.0.assigned_nat_ip}"
 }
