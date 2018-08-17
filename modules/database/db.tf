@@ -27,3 +27,8 @@ resource "google_sql_user" "wordpress-database-rootuser" {
   host     = "%"
   password = "${var.db_password}"
 }
+
+// OUTPUTS
+output "db_address" {
+  value = "${google_sql_database_instance.wordpress-database-instance.ip_address.0.ip_address}"
+}

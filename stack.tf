@@ -16,3 +16,12 @@ module "database" {
   gcp_region = "${var.gcp_region}"
   nat_ip = "${module.network.nat_ip}"
 }
+
+module "wordpress" {
+  source = "./modules/wordpress"
+  db_username = "${var.db_username}"
+  db_password = "${var.db_password}"
+  db_db = "${var.db_db}"
+  db_address = "${module.database.db_address}"
+  gcp_region = "${var.gcp_region}"
+}

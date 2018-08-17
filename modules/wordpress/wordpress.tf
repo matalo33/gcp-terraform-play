@@ -24,5 +24,5 @@ resource "google_compute_instance_template" "wordpress_instance_template" {
   network_interface {
     subnetwork = "${google_compute_subnetwork.us-central1.self_link}"
   }
-  #metadata_startup_script = "${file("startup-scripts/wordpress.sh")}"
+  metadata_startup_script = "${data.template_file.wordpress_startup_script.rendered}"
 }
