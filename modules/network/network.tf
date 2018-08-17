@@ -76,7 +76,7 @@ resource "google_compute_route" "private-instances-to-nat" {
   tags = ["nat-guest"]
   network = "${google_compute_network.wordpress-network.self_link}"
   next_hop_instance = "${google_compute_instance.nat-instance.self_link}"
-  next_hop_instance_zone = "${var.gcp_region}"
+  next_hop_instance_zone = "${var.gcp_nat_zone}"
 }
 
 // Private Instance

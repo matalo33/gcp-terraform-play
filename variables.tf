@@ -4,6 +4,10 @@ variable "gcp_region" {
   default = "us-central1"
 }
 
+variable "gcp_nat_zone" {
+  default = "us-central1-a"
+}
+
 variable "db_instance_tier" {
   default = "db-g1-small"
 }
@@ -17,7 +21,7 @@ variable "db_password" {
 }
 
 variable "db_instance_name" {
-  default = "wordpress-db5"
+  default = "wordpress-db6"
 }
 
 variable "db_db" {

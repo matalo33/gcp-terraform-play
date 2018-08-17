@@ -3,6 +3,7 @@
 module "network" { 
   source = "./modules/network"
   gcp_region = "${var.gcp_region}"
+  gcp_nat_zone = "${var.gcp_nat_zone}"
 }
 
 module "database" {
