@@ -2,7 +2,7 @@
 
 // VPC
 resource "google_compute_network" "wordpress-network" {
-  name                    = "wordpress-network"
+  name = "wordpress-network"
   auto_create_subnetworks = "false"
 }
 
@@ -80,22 +80,26 @@ resource "google_compute_route" "private-instances-to-nat" {
 }
 
 // Private Instance
-resource "google_compute_instance" "private-instance" {
-  name = "private-instance"
-  machine_type = "g1-small"
-  zone = "us-central1-a"
-  tags = ["nat-guest"]
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
-  network_interface {
-    subnetwork = "${google_compute_subnetwork.us-central1.self_link}"
-  }
-}
+# resource "google_compute_instance" "private-instance" {
+#   name = "private-instance"
+#   machine_type = "g1-small"
+#   zone = "us-central1-a"
+#   tags = ["nat-guest"]
+#   boot_disk {
+#     initialize_params {
+#       image = "debian-cloud/debian-9"
+#     }
+#   }
+#   network_interface {
+#     subnetwork = "${google_compute_subnetwork.us-central1.self_link}"
+#   }
+# }
 
 // OUTPUTS
 output "nat_ip" {
   value = "${google_compute_instance.nat-instance.network_interface.0.access_config.0.assigned_nat_ip}"
+}
+
+output "subnetwork" {
+  value = "${google_compute_subnetwork.us-central1.self_link}"
 }
