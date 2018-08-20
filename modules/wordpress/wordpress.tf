@@ -8,6 +8,10 @@ data "template_file" "wordpress_startup_script" {
     db_username = "${var.db_username}"
     db_password = "${var.db_password}"
     db_db = "${var.db_db}"
+    wp_install_admin_username = "${var.wp_install_admin_username}"
+    wp_install_admin_email = "${var.wp_install_admin_email}"
+    wp_install_admin_password = "${var.wp_install_admin_password}"
+    wp_install_domain = "${var.wp_install_domain}"
   }
 }
 
@@ -26,6 +30,9 @@ resource "google_compute_instance_template" "wordpress_instance_template" {
     subnetwork = "${var.gcp_subnet}"
   }
   metadata_startup_script = "${data.template_file.wordpress_startup_script.rendered}"
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "google_compute_region_instance_group_manager" "wordpress_instance_group" {

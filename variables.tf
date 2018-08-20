@@ -39,3 +39,16 @@ variable "db_db" {
 variable "healthcheck_request_path" {
   default = "/"
 }
+
+#variable "wp_install_domain" 
+variable "wp_install_admin_username" {
+  default = "matalo"
+}
+
+variable "wp_install_admin_email" {
+  default = "matthew.taylor@cloudreach.com"
+}
+
+variable "wp_install_admin_password" {
+  default = "herebedragons"
+}

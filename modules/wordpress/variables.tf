@@ -33,3 +33,19 @@ variable "wordpress_distribution_zones" {
 variable "wordpress_tg_size" {
   type = "string"
 }
+
+variable "wp_install_admin_username" {
+  type = "string"
+}
+
+variable "wp_install_admin_email" {
+  type = "string"
+}
+
+variable "wp_install_admin_password" {
+  type = "string"
+}
+
+variable "wp_install_domain" {
+  type = "string"
+}

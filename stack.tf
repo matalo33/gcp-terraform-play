@@ -26,6 +26,10 @@ module "wordpress" {
   health_check = "${module.loadbalancer.health_check}"
   wordpress_distribution_zones = "${var.wordpress_distribution_zones}"
   wordpress_tg_size = "${var.wordpress_tg_size}"
+  wp_install_admin_username = "${var.wp_install_admin_username}"
+  wp_install_admin_email = "${var.wp_install_admin_email}"
+  wp_install_admin_password = "${var.wp_install_admin_password}"
+  wp_install_domain = "${module.network.nat_ip}"
 }
 
 module "loadbalancer" {

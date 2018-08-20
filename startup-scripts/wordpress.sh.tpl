@@ -14,3 +14,11 @@ perl -pi -e "s/password_here/${db_password}/g" wp-config.php
 perl -pi -e "s/localhost/${db_host}/g" wp-config.php
 rm -rf /var/www/html
 ln -s /var/www/wordpress /var/www/html
+
+curl "http://localhost/wp-admin/install.php?step=2" \
+  --data-urlencode "weblog_title=${wp_install_domain}"\
+  --data-urlencode "user_name=${wp_install_admin_username}" \
+  --data-urlencode "admin_email=${wp_install_admin_email}" \
+  --data-urlencode "admin_password=${wp_install_admin_password}" \
+  --data-urlencode "admin_password2=${wp_install_admin_password}" \
+  --data-urlencode "pw_weak=1"
