@@ -68,6 +68,17 @@ resource "google_compute_firewall" "firewall-allow-natguests-ssh" {
   target_tags = ["nat-guest"]
 }
 
+// Firewall rule 'wordpress-http
+resource "google_compute_firewall" "firewall-allow-wordpress-http" {
+  name = "allow-http-wordpress"
+  network = "${google_compute_network.wordpress-network.self_link}"
+  allow {
+    protocol = "tcp"
+    ports = ["80"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["wordpress"]
+}
 
 // Private instances routing to NAT
 resource "google_compute_route" "private-instances-to-nat" {
@@ -79,7 +90,7 @@ resource "google_compute_route" "private-instances-to-nat" {
   next_hop_instance_zone = "${var.gcp_nat_zone}"
 }
 
-// Private Instance
+# // Private Instance
 # resource "google_compute_instance" "private-instance" {
 #   name = "private-instance"
 #   machine_type = "g1-small"
@@ -92,6 +103,9 @@ resource "google_compute_route" "private-instances-to-nat" {
 #   }
 #   network_interface {
 #     subnetwork = "${google_compute_subnetwork.us-central1.self_link}"
+#     access_config {
+#       nat_ip = "146.148.46.182"
+#     }
 #   }
 # }
 

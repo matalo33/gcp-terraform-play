@@ -35,4 +35,5 @@ module "wordpress" {
 module "loadbalancer" {
   source = "./modules/loadbalancer"
   healthcheck_request_path = "${var.healthcheck_request_path}"
+  wordpress_igm = "${module.wordpress.wordpress_igm}"
 }

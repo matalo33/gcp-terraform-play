@@ -43,3 +43,8 @@ resource "google_compute_region_instance_group_manager" "wordpress_instance_grou
   distribution_policy_zones = "${var.wordpress_distribution_zones}"
   target_size = "${var.wordpress_tg_size}"
 }
+
+// OUTPUT
+output "wordpress_igm" {
+  value = "${google_compute_region_instance_group_manager.wordpress_instance_group.instance_group}"
+}

@@ -29,7 +29,7 @@ variable "db_password" {
 }
 
 variable "db_instance_name" {
-  default = "wordpress-db6"
+  default = "wordpress-db3"
 }
 
 variable "db_db" {
